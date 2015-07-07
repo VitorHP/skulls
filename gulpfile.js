@@ -3,7 +3,9 @@ var gulp       = require('gulp'),
     babel      = require('gulp-babel'),
     concat     = require('gulp-concat'),
     watch      = require('gulp-watch'),
-    plumber    = require('gulp-plumber');
+    plumber    = require('gulp-plumber'),
+    connect    = require('gulp-connect')
+    ;
 
 gulp.task('scripts', function() {
   return gulp.src([
@@ -23,3 +25,11 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
   gulp.watch('app/scripts/**/*.js', ['scripts']);
 });
+
+gulp.task('webserver', function() {
+  connect.server({
+    livereload: true
+  });
+});
+
+gulp.task('default', ['scripts', 'webserver', 'watch']);

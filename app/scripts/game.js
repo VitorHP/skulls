@@ -10,7 +10,7 @@ class Game {
 
   startTurn () {
     this.players[0].activate
-    console.log(`It's ${this.players[0].name}'s turn`);
+    console.log(`Hey! It's ${this.players[0].name}'s turn`);
 
     this.rotatePlayers();
   }
