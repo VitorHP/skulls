@@ -12,14 +12,19 @@ class Player {
       new Card('rose'),
       new Card('rose'),
     ]
+    this.placedCards = [];
   }
 
-  challenge (cards) {
+  challenge (numberOfCards) {
 
   }
 
-  bet () {
+  place (cardIndex) {
+    var card = this.cards.splice(cardIndex, 1)[0];
 
+    this.placedCards.push(card);
+
+    console.log(`Player ${this.name} placed a ${card.name}!`);
   }
 
 }
