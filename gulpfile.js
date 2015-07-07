@@ -1,8 +1,9 @@
-var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
-var watch = require('gulp-watch');
+var gulp       = require('gulp'),
+    sourcemaps = require('gulp-sourcemaps'),
+    babel      = require('gulp-babel'),
+    concat     = require('gulp-concat'),
+    watch      = require('gulp-watch'),
+    plumber    = require('gulp-plumber');
 
 gulp.task('scripts', function() {
   return gulp.src([
@@ -11,6 +12,7 @@ gulp.task('scripts', function() {
       'app/scripts/game.js',
       'app/scripts/app.js',
     ])
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel())
     .pipe(concat('app.js'))
