@@ -13,4 +13,13 @@ class Player {
       new Card('rose'),
     ]
   }
+
+  challenge (cards) {
+
+  }
+
+  bet () {
+
+  }
+
 }
