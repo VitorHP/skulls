@@ -1,21 +1,28 @@
 class Game {
   constructor (players) {
     this.players = players;
+    this.turns   = [];
   }
 
   start () {
     console.log('Game started!');
 
-    this.startTurn();
+    this.startTurn({ rotatePlayers: false });
   }
 
-  startTurn () {
-    console.log(`Hey! It's ${this.players[0].name}'s turn`);
+  startTurn (options = { rotatePlayers: true }) {
+    if (options.rotatePlayers)
+      this.rotatePlayers();
 
-    this.rotatePlayers();
+    this.turns.push(new Turn(this.players[0]))
+    this.turns[this.turns.length - 1].register('end-turn', this);
   }
 
   rotatePlayers () {
     this.players.push(this.players.shift());
+  }
+
+  update () {
+    this.startTurn();
   }
 }

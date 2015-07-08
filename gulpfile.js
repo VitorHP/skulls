@@ -11,6 +11,7 @@ gulp.task('scripts', function() {
   return gulp.src([
       'app/scripts/card.js',
       'app/scripts/player.js',
+      'app/scripts/turn.js',
       'app/scripts/game.js',
       'app/scripts/app.js',
     ])
