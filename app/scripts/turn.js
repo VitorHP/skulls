@@ -1,7 +1,8 @@
-class Turn {
+class Turn extends Component {
   constructor(player) {
+    super();
     this.player = player
-    this.player.register('ready', this);
+    this.player.subscribe('ready', this);
     this.player.wake();
 
     this.subscribers = { 'end-turn' : [] }
@@ -14,13 +15,4 @@ class Turn {
     this.player.unsubscribe('ready', this);
   }
 
-  register (action, subscriber) {
-    this.subscribers[action].push(subscriber);
-  }
-
-  publish (action) {
-    this.subscribers[action].forEach(function(subscriber) {
-      subscriber.update();
-    })
-  }
 }

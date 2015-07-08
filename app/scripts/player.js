@@ -1,10 +1,11 @@
-
-class Player {
+class Player extends Component {
   constructor (name) {
-    this.name = name;
-    this.resetHand()
-    this.state = 'wait';
+    super();
+    this.name        = name;
+    this.state       = 'wait';
     this.subscribers = { 'ready' : [] }
+
+    this.resetHand()
   }
 
   resetHand () {
@@ -35,24 +36,6 @@ class Player {
     console.log(`Player ${this.name} placed a card!`);
 
     this.publish('ready');
-  }
-
-  register (action, subscriber) {
-    this.subscribers[action].push(subscriber);
-  }
-
-  unsubscribe (action, subscriber) {
-    var subscriberIndex = this.subscribers[action].indexOf(subscriber);
-    this.subscribers[action].splice(subscriberIndex, 1);
-  }
-
-  publish (action) {
-    this.subscribers[action].forEach(function(subscriber) {
-      switch (action) {
-        case 'ready':
-          subscriber.update(action);
-      }
-    });
   }
 
 }

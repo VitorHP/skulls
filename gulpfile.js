@@ -9,6 +9,7 @@ var gulp       = require('gulp'),
 
 gulp.task('scripts', function() {
   return gulp.src([
+      'app/scripts/component.js',
       'app/scripts/card.js',
       'app/scripts/player.js',
       'app/scripts/turn.js',

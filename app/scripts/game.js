@@ -15,7 +15,7 @@ class Game {
       this.rotatePlayers();
 
     this.turns.push(new Turn(this.players[0]))
-    this.turns[this.turns.length - 1].register('end-turn', this);
+    this.turns[this.turns.length - 1].subscribe('end-turn', this);
   }
 
   rotatePlayers () {
