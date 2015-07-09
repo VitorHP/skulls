@@ -1,4 +1,37 @@
 class Component {
+  /* StateMachine Behavior */
+  constructor(events) {
+    this.declareEvents(events || [])
+  }
+
+  declareEvents(events) {
+    events.forEach(function(event) {
+      this[event.name] = function () {
+        this.changeState(event);
+      }
+    }, this);
+  }
+
+  changeState (event) {
+    var from = this.arrayfy(event.from);
+
+    if (from.indexOf(this.state) !== -1) {
+      this.state = event.to;
+      console.log(`machine is ${this.state}`);
+    }
+  }
+
+  arrayfy (stuff) {
+    if (typeof(stuff) === 'string') {
+      return new Array(stuff)
+    } else {
+      return stuff
+    }
+  }
+
+
+  /* PubSub Behavior */
+
   subscribe (action, subscriber) {
     this.subscribers[action].push(subscriber);
   }

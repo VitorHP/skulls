@@ -1,11 +1,18 @@
 class Player extends Component {
   constructor (name) {
-    super();
-    this.name        = name;
-    this.state       = 'wait';
-    this.subscribers = { 'ready' : [] }
+    var events = [
+      { name: 'wake', from: 'inactive', to: 'active' },
+      { name: 'sleep', from: 'active', to: 'inactive' }
+    ]
 
-    this.resetHand()
+    super(events);
+
+    this.name  = name;
+    this.state = 'inactive';
+    this.subscribers = {
+      'ready' : []
+    }
+    this.resetHand();
   }
 
   resetHand () {
@@ -18,16 +25,6 @@ class Player extends Component {
     this.placedCards = [];
   }
 
-  wake () {
-    console.log(`Player ${this.name} is active`);
-    this.state = 'active';
-  }
-
-  sleep () {
-    console.log(`Player ${this.name} is inactive`);
-    this.state = 'wait';
-  }
-
   place (cardIndex) {
     var card = this.cards.splice(cardIndex, 1)[0];
 
@@ -36,6 +33,12 @@ class Player extends Component {
     console.log(`Player ${this.name} placed a card!`);
 
     this.publish('ready');
+  }
+
+  toString () {
+    return 'Player: ' + this.name +  ' - ' + this.placedCards.map(function(card) {
+      return card.toString()
+    })
   }
 
 }

@@ -11,6 +11,8 @@ class Game {
   }
 
   startTurn (options = { rotatePlayers: true }) {
+    this.toString()
+
     if (options.rotatePlayers)
       this.rotatePlayers();
 
@@ -24,5 +26,11 @@ class Game {
 
   update () {
     this.startTurn();
+  }
+
+  toString () {
+    this.players.forEach(function(player) {
+      console.log(player.toString())
+    })
   }
 }

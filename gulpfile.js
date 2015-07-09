@@ -15,6 +15,7 @@ gulp.task('scripts', function() {
       'app/scripts/turn.js',
       'app/scripts/game.js',
       'app/scripts/app.js',
+      'app/scripts/state_machine.js',
     ])
     .pipe(plumber())
     .pipe(sourcemaps.init())
