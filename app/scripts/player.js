@@ -13,6 +13,7 @@ class Player extends Component {
       'ready' : []
     }
     this.resetHand();
+    this.actions = []
   }
 
   resetHand () {
