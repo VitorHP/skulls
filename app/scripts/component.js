@@ -17,7 +17,14 @@ class Component {
 
     if (from.indexOf(this.state) !== -1) {
       this.state = event.to;
+      this.callHook('onEnter' + this.state.capitalize());
       console.log(`machine is ${this.state}`);
+    }
+  }
+
+  callHook (hookName) {
+    if (this[hookName] !== undefined) {
+      this[hookName]();
     }
   }
 

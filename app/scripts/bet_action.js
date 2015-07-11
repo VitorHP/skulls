@@ -1,4 +1,4 @@
-class PlaceAction {
+class BetAction {
   constructor () {
   }
 

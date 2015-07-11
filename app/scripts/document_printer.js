@@ -4,6 +4,6 @@ class DocumentPrinter {
   }
 
   print (text) {
-    this.textarea.val += '\n' + text;
+    this.textarea.value += '\n' + text;
   }
 }

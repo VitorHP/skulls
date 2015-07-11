@@ -9,13 +9,16 @@ var gulp       = require('gulp'),
 
 gulp.task('scripts', function() {
   return gulp.src([
+      'app/scripts/string.js',
+      'app/scripts/document_printer.js',
       'app/scripts/component.js',
+      'app/scripts/bet_action.js',
       'app/scripts/card.js',
       'app/scripts/player.js',
       'app/scripts/turn.js',
+      'app/scripts/round.js',
       'app/scripts/game.js',
       'app/scripts/app.js',
-      'app/scripts/state_machine.js',
     ])
     .pipe(plumber())
     .pipe(sourcemaps.init())

@@ -33,7 +33,7 @@ class Player extends Component {
 
     console.log(`Player ${this.name} placed a card!`);
 
-    this.publish('ready');
+    this.publish('player.done');
   }
 
   toString () {

@@ -1,18 +1,25 @@
 class Turn extends Component {
-  constructor(player) {
+  constructor(player, availableActions) {
     super();
     this.player = player
-    this.player.subscribe('ready', this);
     this.player.wake();
+    this.actions = availableActions
 
-    this.subscribers = { 'end-turn' : [] }
+    this.subscribers = { 'turn.end' : [] }
+    this.describeActions();
   }
 
-  update () {
-    console.log(`${this.player.name} turn ended`);
-    this.player.sleep();
-    this.publish('end-turn');
-    this.player.unsubscribe('ready', this);
+  describeActions () {
+    this.actions.map(function(action) {
+      return action.describe();
+    }).join('\n');
+  }
+
+  update (event) {
+    if (event == 'player.done') {
+      this.player.sleep();
+      this.publish('turn.end');
+    }
   }
 
 }

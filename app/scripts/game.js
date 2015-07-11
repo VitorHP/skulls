@@ -1,27 +1,20 @@
 class Game {
   constructor (players) {
+    this.printer = new DocumentPrinter();
     this.players = players;
-    this.turns   = [];
+    this.rounds  = [];
   }
 
   start () {
-    console.log('Game started!');
+    this.printer.print('Game started!');
 
-    this.startTurn({ rotatePlayers: false });
+    this.startRound();
   }
 
-  startTurn (options = { rotatePlayers: true }) {
+  startRound () {
     this.toString()
 
-    if (options.rotatePlayers)
-      this.rotatePlayers();
-
-    this.turns.push(new Turn(this.players[0]))
-    this.turns[this.turns.length - 1].subscribe('end-turn', this);
-  }
-
-  rotatePlayers () {
-    this.players.push(this.players.shift());
+    this.rounds.push(new Round(this.players))
   }
 
   update () {
@@ -29,8 +22,23 @@ class Game {
   }
 
   toString () {
-    this.players.forEach(function(player) {
-      console.log(player.toString())
-    })
+    this.printer.print(this.players.map(function(player) {
+      return player.toString()
+    }).join('\n'))
   }
+
+  // rotatePlayers () {
+  //   this.players.push(this.players.shift());
+  // }
+
+  // startTurn (options = { rotatePlayers: true }) {
+  //   this.toString()
+
+  //   if (options.rotatePlayers)
+  //     this.rotatePlayers();
+
+  //   this.turns.push(new Turn(this.players[0]))
+  //   this.turns[this.turns.length - 1].subscribe('end-turn', this);
+  // }
+
 }
