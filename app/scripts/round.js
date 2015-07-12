@@ -23,9 +23,9 @@ class Round {
 
   onEnterPreparing () {
     this.turns.push(new Turn(this.players[0], this.availableActions()));
-    this.turns[this.turns.length - 1].subscribe('turn.end', this);
-    this.turns[this.turns.length - 1].subscribe('turn.updated', this);
-    this.turns[this.turns.length - 1].start();
+    this.turns.last().subscribe('turn.end', this);
+    this.turns.last().subscribe('turn.updated', this);
+    this.turns.last().start();
   }
 
   availableActions () {
