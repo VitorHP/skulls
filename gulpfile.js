@@ -9,9 +9,12 @@ var gulp       = require('gulp'),
 
 gulp.task('scripts', function() {
   return gulp.src([
+      'node_modules/gulp-babel/node_modules/babel-core/browser-polyfill.js',
+      'app/scripts/mixin.js',
+      'app/scripts/publish_subscribe.js',
+      'app/scripts/state_machine.js',
       'app/scripts/string.js',
       'app/scripts/document_printer.js',
-      'app/scripts/component.js',
       'app/scripts/bet_action.js',
       'app/scripts/card.js',
       'app/scripts/player.js',
@@ -22,7 +25,7 @@ gulp.task('scripts', function() {
     ])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(babel())
+    .pipe(babel({ ignore: ['node_modules/**/*.js'], optional: ['es7.decorators'] }))
     .pipe(concat('app.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));

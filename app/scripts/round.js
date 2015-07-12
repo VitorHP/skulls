@@ -1,14 +1,13 @@
-class Round extends Component {
+@StateMachine
+class Round {
   constructor(players){
-    var events = [
+    this.events([
       { name: 'start'     , from: 'initial'     , to: 'preparing' },
       { name: 'bet'       , from: 'preparing'   , to: 'betting' },
       { name: 'challenge' , from: 'betting'     , to: 'challenging' },
       { name: 'reveal'    , from: 'challenging' , to: 'revealing' },
       { name: 'end'       , from: 'revealing'   , to: 'finished' }
-    ];
-
-    super(events);
+    ]);
 
     this.subscribers = {
       'start' : []
@@ -16,7 +15,6 @@ class Round extends Component {
 
     this.state   = 'initial';
     this.players = players;
-    this.start();
   }
 
   onEnterPreparing () {

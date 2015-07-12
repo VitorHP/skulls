@@ -1,12 +1,10 @@
-
-class Card extends Component {
+@StateMachine
+class Card {
   constructor (name) {
-    var events = [
+    this.events([
       { name: 'show', from: 'hidden', to: 'open' },
       { name: 'hide', from: 'open', to: 'hidden' },
-    ]
-
-    super(events);
+    ])
 
     this.name  = name;
     this.state = 'hidden';

@@ -1,6 +1,6 @@
-class Turn extends Component {
+@PublishSubscribe
+class Turn {
   constructor(player, availableActions) {
-    super();
     this.player = player
     this.player.wake();
     this.actions = availableActions

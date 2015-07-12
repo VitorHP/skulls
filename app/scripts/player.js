@@ -1,11 +1,11 @@
-class Player extends Component {
+@StateMachine
+@PublishSubscribe
+class Player {
   constructor (name) {
     var events = [
       { name: 'wake', from: 'inactive', to: 'active' },
       { name: 'sleep', from: 'active', to: 'inactive' }
     ]
-
-    super(events);
 
     this.name  = name;
     this.state = 'inactive';
