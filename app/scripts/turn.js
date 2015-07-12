@@ -11,9 +11,10 @@ class Turn {
   }
 
   start () {
-    this.player.subscribe('player.done', this);
-    this.player.subscribe('player.updated', this);
-    this.player.wake();
+    this.player
+      .subscribe('player.done', this)
+      .subscribe('player.updated', this)
+      .wake();
   }
 
   describeActions () {

@@ -11,9 +11,10 @@ class Game {
 
   startRound () {
     this.rounds.push(new Round(this.players))
-    this.rounds.last().subscribe('round.updated', this)
-    this.rounds.last().subscribe('round.end', this)
-    this.rounds.last().start()
+    this.rounds.last()
+      .subscribe('round.updated', this)
+      .subscribe('round.end', this)
+      .start()
   }
 
   update (event) {
