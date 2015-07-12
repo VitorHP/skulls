@@ -1,4 +1,4 @@
-class DocumentInput () {
+class DocumentInput {
   constructor () {
     this.input    = document.getElementById('input');
   }
