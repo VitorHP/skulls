@@ -1,25 +1,41 @@
 @PublishSubscribe
 class Turn {
   constructor(player, availableActions) {
-    this.player = player
-    this.player.wake();
+    this.player  = player
     this.actions = availableActions
 
-    this.subscribers = { 'turn.end' : [] }
-    this.describeActions();
+    this.subscribers = { 
+      'turn.end'     : [],
+      'turn.updated' : [] 
+    }
+  }
+
+  start () {
+    this.player.subscribe('player.done', this);
+    this.player.subscribe('player.updated', this);
+    this.player.wake();
   }
 
   describeActions () {
-    this.actions.map(function(action) {
-      return action.describe();
+    return this.actions.map(function(action, index) {
+      return `\n${index + 1} - ${action.toString()}`;
     }).join('\n');
   }
 
-  update (event) {
-    if (event == 'player.done') {
-      this.player.sleep();
-      this.publish('turn.end');
+  update (event, publisher) {
+    switch (event) {
+      case 'player.done':
+        this.player.sleep();
+        this.publish('turn.end');
+        break;
+      case 'player.updated':
+        this.publish('turn.updated');
+        break;
     }
+  }
+
+  toString() {
+    return `It's ${this.player.name}'s turn. \n${this.player.toString()}\n\nAções disponíveis\n${this.describeActions()}`;
   }
 
 }

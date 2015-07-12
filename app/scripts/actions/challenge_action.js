@@ -2,7 +2,7 @@ class ChallengeAction {
   constructor () {
   }
 
-  describe () {
+  toString () {
     return 'Challenge'
   }
 

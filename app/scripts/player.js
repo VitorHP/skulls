@@ -2,21 +2,18 @@
 @PublishSubscribe
 class Player {
   constructor (name) {
-    var events = [
+    this.events([
       { name: 'wake', from: 'inactive', to: 'active' },
       { name: 'sleep', from: 'active', to: 'inactive' }
-    ]
+    ])
 
-    this.name  = name;
-    this.state = 'inactive';
+    this.name        = name;
+    this.state       = 'inactive';
+    this.actions     = []
     this.subscribers = {
-      'ready' : []
+      'player.updated' : [],
+      'player.done'    : []
     }
-    this.resetHand();
-    this.actions = []
-  }
-
-  resetHand () {
     this.cards = [
       new Card('skull'),
       new Card('rose'),
@@ -26,18 +23,12 @@ class Player {
     this.placedCards = [];
   }
 
-  place (cardIndex) {
-    var card = this.cards.splice(cardIndex, 1)[0];
-
-    this.placedCards.push(card);
-
-    console.log(`Player ${this.name} placed a card!`);
-
-    this.publish('player.done');
+  onEnterActive () {
+    this.publish('player.updated');
   }
 
   toString () {
-    return 'Player: ' + this.name +  ' - ' + this.placedCards.map(function(card) {
+    return 'Player: ' + this.name +  ' - ' + this.cards.map(function(card) {
       return card.toString()
     })
   }

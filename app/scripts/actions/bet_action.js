@@ -2,8 +2,8 @@ class BetAction {
   constructor () {
   }
 
-  describe () {
-    return 'Place another card'
+  toString () {
+    return 'Baixar uma carta'
   }
 
   perform () {

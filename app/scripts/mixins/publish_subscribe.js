@@ -8,9 +8,9 @@ const PublishSubscribe = mixin({
     this.subscribers[action].splice(subscriberIndex, 1);
   },
 
-  publish (action) {
-    this.subscribers[action].forEach(function(subscriber) {
-      subscriber.update();
-    })
+  publish (event) {
+    this.subscribers[event].forEach(function(subscriber) {
+      subscriber.update(event, this);
+    }, this)
   }
 });

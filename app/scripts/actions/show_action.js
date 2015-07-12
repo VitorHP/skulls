@@ -2,7 +2,7 @@ class ShowAction {
   constructor () {
   }
 
-  describe () {
+  toString () {
   }
 
   perform () {

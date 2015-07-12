@@ -2,7 +2,7 @@ class RaiseAction {
   constructor () {
   }
 
-  describe () {
+  toString () {
     return 'Raise'
   }
 

@@ -6,39 +6,29 @@ class Game {
   }
 
   start () {
-    this.printer.print('Game started!');
-
     this.startRound();
   }
 
   startRound () {
-    this.toString()
-
     this.rounds.push(new Round(this.players))
+    this.rounds[this.rounds.length - 1].subscribe('round.updated', this)
+    this.rounds[this.rounds.length - 1].subscribe('round.end', this)
+    this.rounds[this.rounds.length - 1].start()
   }
 
-  update () {
-    this.startTurn();
+  update (event) {
+    switch (event) {
+      case 'round.updated':
+        this.printer.print(this.toString());
+        break;
+      case 'round.end':
+        this.startTurn();
+        break;
+    }
   }
 
   toString () {
-    this.printer.print(this.players.map(function(player) {
-      return player.toString()
-    }).join('\n'))
+    return this.rounds[this.rounds.length - 1].toString()
   }
-
-  // rotatePlayers () {
-  //   this.players.push(this.players.shift());
-  // }
-
-  // startTurn (options = { rotatePlayers: true }) {
-  //   this.toString()
-
-  //   if (options.rotatePlayers)
-  //     this.rotatePlayers();
-
-  //   this.turns.push(new Turn(this.players[0]))
-  //   this.turns[this.turns.length - 1].subscribe('end-turn', this);
-  // }
 
 }

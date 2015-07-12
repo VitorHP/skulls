@@ -1,4 +1,5 @@
 @StateMachine
+@PublishSubscribe
 class Round {
   constructor(players){
     this.events([
@@ -10,15 +11,21 @@ class Round {
     ]);
 
     this.subscribers = {
-      'start' : []
+      'round.start'   : [],
+      'round.end'     : [],
+      'round.updated' : []
     }
 
     this.state   = 'initial';
     this.players = players;
+    this.turns   = [];
   }
 
   onEnterPreparing () {
-    this.turns = new Turn(this.players[0], this.availableActions())
+    this.turns.push(new Turn(this.players[0], this.availableActions()));
+    this.turns[this.turns.length - 1].subscribe('turn.end', this);
+    this.turns[this.turns.length - 1].subscribe('turn.updated', this);
+    this.turns[this.turns.length - 1].start();
   }
 
   availableActions () {
@@ -35,8 +42,19 @@ class Round {
     });
   }
 
+  update (event, publisher) {
+    switch (event) {
+      case 'turn.updated':
+        this.publish('round.updated');
+        break;
+      case 'turn.end':
+        this.publish('round.end');
+        break;
+    }
+  }
+
   toString () {
-    return `Round started!\n${this.players.length} player(s)`
+    return `Round started!\n${this.players.length} player(s)\n${this.turns.last().toString()}`
   }
 }
 

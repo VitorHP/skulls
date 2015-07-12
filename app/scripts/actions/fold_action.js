@@ -2,7 +2,7 @@ class FoldAction {
   constructor () {
   }
 
-  describe () {
+  toString () {
     return 'Fold'
   }
 
