@@ -1,3 +1,22 @@
+/*
+ * For proper behavior of this mixin, is expected that the target
+ * class declare an object containing the events that it publishes
+ * as a key for an empty array that will be filled once subscribers
+ * start registering for those events.
+ *
+ * Ex:
+ *
+ * @PublishSubscribe
+ * class Car {
+ *  constructor () {
+ *    this.subscribers = {
+ *      'car.move' : [],
+ *      'car.stop' : []
+ *      }
+ *    }
+ *  }
+ * }
+ */
 const PublishSubscribe = mixin({
   subscribe (action, subscriber) {
     this.subscribers[action].push(subscriber);
