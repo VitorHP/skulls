@@ -23,7 +23,7 @@ gulp.task('scripts', function() {
     ])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(babel({ ignore: ['node_modules/**/*.js'], optional: ['es7.decorators'] }))
+    .pipe(babel({ ignore: ['node_modules/**/*.js', 'bower_components/**/*.js'], optional: ['es7.decorators'] }))
     .pipe(concat('app.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
