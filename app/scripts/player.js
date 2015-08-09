@@ -27,10 +27,16 @@ class Player {
     this.publish('player.updated');
   }
 
+  setActions (actions) {
+    this.actions = actions
+  }
+
   toString () {
-    return 'Player: ' + this.name +  ' - ' + this.cards.map(function(card) {
-      return card.toString()
-    })
+    return 'Player: ' + this.name +  ' - ' + this.cards.map(function(card) { return card.toString() }) + '\n\n' + 
+           'Available actions\n' +
+           this.actions.map(function(action, index) {
+             return `\n${index + 1} - ${action.toString()}`;
+           }).join('\n');
   }
 
 }

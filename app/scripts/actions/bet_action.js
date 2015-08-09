@@ -1,5 +1,6 @@
-class BetAction {
+class BetAction extends Action {
   constructor () {
+    super();
   }
 
   toString () {
@@ -7,5 +8,6 @@ class BetAction {
   }
 
   perform () {
+    this.input.subscribe('input.update', this)
   }
 }
