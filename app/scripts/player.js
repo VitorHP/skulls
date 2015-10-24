@@ -1,3 +1,7 @@
+var StateMachine = require('./mixins/state_machine.js'),
+    PublishSubscribe = require('./mixins/publish_subscribe.js'),
+    Card = require('./card.js');
+
 @StateMachine
 @PublishSubscribe
 class Player {
@@ -40,3 +44,5 @@ class Player {
   }
 
 }
+
+module.exports = Player;

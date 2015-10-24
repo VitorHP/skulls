@@ -9,3 +9,5 @@ class RaiseAction {
   perform () {
   }
 }
+
+module.exports = RaiseAction;

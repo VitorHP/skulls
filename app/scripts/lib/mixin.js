@@ -20,3 +20,5 @@ function mixin (behaviour, sharedBehaviour = {}) {
   return _mixin;
 }
 
+
+module.exports = mixin;

@@ -7,3 +7,5 @@ class DocumentPrinter {
     this.textarea.value += '\n' + text;
   }
 }
+
+module.exports = DocumentPrinter;

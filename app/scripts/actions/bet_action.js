@@ -1,3 +1,5 @@
+var Action = require('./action.js');
+
 class BetAction extends Action {
   constructor () {
     super();
@@ -11,3 +13,5 @@ class BetAction extends Action {
     this.input.subscribe('input.update', this)
   }
 }
+
+module.exports = BetAction;

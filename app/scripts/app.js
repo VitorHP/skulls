@@ -1,3 +1,9 @@
+require('./lib/array.js');
+require('./lib/string.js');
+
+var Player = require('./player.js'),
+    Game = require('./game.js');
+
 var paul   = new Player('Paul');
 var george = new Player('George');
 var john   = new Player('John');

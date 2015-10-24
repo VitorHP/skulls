@@ -1,3 +1,5 @@
+var PublishSubscribe = require('../mixins/publish_subscribe.js');
+
 @PublishSubscribe
 class DocumentInput {
   constructor () {
@@ -27,3 +29,5 @@ class DocumentInput {
     this.submit.addEventListener('click', this.onClick.bind(this));
   }
 }
+
+module.exports = DocumentInput;

@@ -1,3 +1,6 @@
+var Round = require('./round.js');
+var DocumentPrinter = require('./services/document_printer.js');
+
 class Game {
   constructor (players) {
     this.printer = new DocumentPrinter();
@@ -33,3 +36,5 @@ class Game {
   }
 
 }
+
+module.exports = Game;

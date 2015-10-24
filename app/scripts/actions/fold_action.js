@@ -9,3 +9,5 @@ class FoldAction {
   perform () {
   }
 }
+
+module.exports = FoldAction;

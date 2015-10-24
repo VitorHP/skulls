@@ -9,3 +9,5 @@ class ChallengeAction {
   perform () {
   }
 }
+
+module.exports = ChallengeAction;

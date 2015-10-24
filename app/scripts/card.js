@@ -1,3 +1,5 @@
+var StateMachine = require('./mixins/state_machine.js');
+
 @StateMachine
 class Card {
   constructor (name) {
@@ -17,3 +19,5 @@ class Card {
     }[this.state]
   }
 }
+
+module.exports = Card;

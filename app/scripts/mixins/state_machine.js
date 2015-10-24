@@ -1,3 +1,5 @@
+var mixin = require('../lib/mixin.js');
+
 const StateMachine = mixin({
   /*
    * Receives an array of events in the form
@@ -49,3 +51,4 @@ const StateMachine = mixin({
   }
 });
 
+module.exports = StateMachine;

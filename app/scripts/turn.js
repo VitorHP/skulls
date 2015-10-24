@@ -1,3 +1,5 @@
+var PublishSubscribe = require('./mixins/publish_subscribe.js');
+
 @PublishSubscribe
 class Turn {
   constructor(player) {
@@ -33,3 +35,5 @@ class Turn {
   }
 
 }
+
+module.exports = Turn;

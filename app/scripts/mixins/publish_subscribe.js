@@ -1,3 +1,4 @@
+var mixin = require('../lib/mixin.js');
 /*
  * For proper behavior of this mixin, is expected that the target
  * class declare an object containing the events that it publishes
@@ -36,3 +37,5 @@ const PublishSubscribe = mixin({
     return this
   }
 });
+
+module.exports = PublishSubscribe;

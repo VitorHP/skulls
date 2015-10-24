@@ -1,3 +1,12 @@
+var StateMachine = require('./mixins/state_machine.js'),
+    PublishSubscribe = require('./mixins/publish_subscribe.js'),
+    Turn = require('./turn.js');
+
+window.ChallengeAction = require('./actions/challenge_action.js');
+window.RaiseAction = require('./actions/raise_action.js');
+window.FoldAction = require('./actions/fold_action.js');
+window.BetAction = require('./actions/bet_action.js');
+
 @StateMachine
 @PublishSubscribe
 class Round {
@@ -42,7 +51,7 @@ class Round {
 
     return actionsPerState[this.state].map(function(actionName) {
       return new window[actionName.capitalize() + 'Action']()
-    });
+    }, this);
   }
 
   update (event, publisher) {
@@ -61,4 +70,4 @@ class Round {
   }
 }
 
-
+module.exports = Round;
