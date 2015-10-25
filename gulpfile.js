@@ -4,16 +4,21 @@ var gulp       = require('gulp'),
     plumber    = require('gulp-plumber'),
     connect    = require('gulp-connect'),
     browserify = require('gulp-browserify'),
-    babelify   = require('babelify')
+    babelify   = require('babelify'),
+    karma      = require('karma-as-promised')
     ;
+
+function bundleBroserify () {
+  return browserify({ 
+    insertGlobals: true,
+    transform: [ babelify.configure({ optional: 'es7.decorators' }) ]
+  })
+}
 
 gulp.task('scripts', function() {
   return gulp.src('app/scripts/app.js')
     .pipe(plumber())
-    .pipe(browserify({ 
-      insertGlobals: true,
-      transform: [ babelify.configure({ optional: 'es7.decorators' }) ]
-    }))
+    .pipe(bundleBroserify())
     .pipe(gulp.dest('dist'));
 });
 
@@ -27,4 +32,22 @@ gulp.task('webserver', function() {
   });
 });
 
-gulp.task('default', ['scripts', 'webserver', 'watch']);
+gulp.task('specs', function(){
+  return karma.server.start({
+    files: [
+      'spec/**/*_spec.js'
+    ],
+    frameworks: ['browserify', 'jasmine'],
+    preprocessors: {
+      'spec/**/*_spec.js': ['browserify']
+    },
+    browsers: ['PhantomJS'],
+    reporters: ['spec', 'failed'],
+    browserify: {
+      debug: true,
+      transform: [ babelify.configure({ optional: 'es7.decorators' }) ]
+    }
+  })
+})
+
+gulp.task('default', ['scripts', 'webserver', 'watch', 'specs']);
